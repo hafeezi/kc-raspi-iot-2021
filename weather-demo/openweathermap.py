@@ -12,7 +12,7 @@ data = r.json()
 
 temp_float = data['main']['temp'] - 273
 
-temp = str(Decimal(temp_float)) + "C"
+temp = str(round(temp_float, 2)) + "C"
 
 sense = SenseHat()
 sense.show_message(temp)
