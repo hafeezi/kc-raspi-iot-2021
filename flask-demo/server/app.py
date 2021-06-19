@@ -18,18 +18,24 @@ def weather():
 @app.route("/temperature", methods=["GET", "POST"])
 def temperature():
   if request.method == "POST":
-    data = request.json
+    data = request.get_json(force=True)
     now = datetime.now()
+    print(data)
 
-    store.append({"temp": data["temp"], "dt": now})
+    temp = data["temp"]
+
+    store.append({"temp": temp, "dt": now})
 
     return "Data stored"
   else:
-    index = len(store) - 1
-    data = store[index]
-    print(data)
-    return jsonify(data)
+    if len(store) > 0:
+      index = len(store) - 1
+      data = store[index]
+      print(data)
+      return jsonify(data)
+    else:
+      return "No Data"
 
 @app.route("/db")
 def show_store():
-  return store
+  return jsonify(store)
