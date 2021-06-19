@@ -16,4 +16,4 @@ print(feel_like)
 print(hum)
 
 sense = SenseHat()
-sense.show_message(temp + "C")
+sense.show_message(str(temp) + "C")
