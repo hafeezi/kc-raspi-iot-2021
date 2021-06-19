@@ -1,6 +1,8 @@
+from sense_hat import SenseHat
 import requests
+from decimal import *
 
-api_key = "71a207eea0e16025540eda1430bc32d0"
+api_key = "YOUR API KEY"
 url = "https://api.openweathermap.org/data/2.5/weather"
 params = {'q': 'Kota Kinabalu', 'appid': api_key }
 
@@ -8,7 +10,10 @@ r = requests.get(url = url, params = params)
 
 data = r.json()
 
-temp = data['main']['temp'] - 273
+temp_float = data['main']['temp'] - 273
 
-print(temp)
+temp = str(Decimal(temp_float)) + "C"
+
+sense = SenseHat()
+sense.show_message(temp)
 

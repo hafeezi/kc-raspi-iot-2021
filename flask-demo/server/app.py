@@ -5,7 +5,7 @@ from flask.json import jsonify
 
 app = Flask(__name__)
 
-db = []
+store = []
 
 @app.route("/")
 def hello_world():
@@ -21,11 +21,15 @@ def temperature():
     data = request.json
     now = datetime.now()
 
-    db.append({"temp": data["temp"], "dt": now})
+    store.append({"temp": data["temp"], "dt": now})
 
     return "Data stored"
   else:
-    index = len(db) - 1
-    data = db[index]
+    index = len(store) - 1
+    data = store[index]
     print(data)
     return jsonify(data)
+
+@app.route("/db")
+def show_store():
+  return store

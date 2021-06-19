@@ -1,4 +1,4 @@
-# from sense_hat import SenseHat
+from sense_hat import SenseHat
 import requests
 
 url = "https://athena.sabah.io/weather/kota-kinabalu.json"
@@ -15,6 +15,5 @@ print(temp)
 print(feel_like)
 print(hum)
 
-# sense = SenseHat()
-
-# sense.show_message(temp + "C")
+sense = SenseHat()
+sense.show_message(temp + "C")
